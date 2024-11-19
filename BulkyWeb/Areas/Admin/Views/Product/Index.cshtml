@@ -1,0 +1,62 @@
+﻿@model List<Product>
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-primary bg-gradient ml-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Product List</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row">
+			<div class="col-6">
+				<h2 class="text-primary"></h2>
+			</div>
+			<div class="col-6 text-end">
+				<a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
+					<i class="bi bi-plus-circle"></i> Create New Product
+				</a>
+			</div>
+		</div>
+
+		<table id="tblData" class="table table-bordered table-striped mt-3">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Author Name</th>
+					<th>ISBN</th>
+					<th>Price</th>
+					<th>Category Name</th>
+					<th>Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach(var product in Model)
+				{
+					<tr>
+						<td>@product.Title</td>
+						<td>@product.Description</td>
+						<td>@product.Author</td>
+						<td>@product.ISBN</td>
+						<td>@product.Price</td>
+						<td>@product.Category.Name</td>
+						<td><a asp-controller="Product" asp-action="Upsert" asp-route-id="@product.Id" class="btn border btn-primary form-control">Edit</a></td>
+						<td>
+							<a href="javascript:void(0);"
+							   onclick="Delete('/Product/Delete/' + @product.Id)"
+							   class="btn border btn-danger">
+								Delete
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@section scripts{
+	<script src="~/js/product.js"></script>
+}
