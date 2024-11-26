@@ -2,7 +2,9 @@
 using BookNest.DataAccess.Repository.IRepository;
 using BookNest.Models;
 using BookNest.Models.ViewModels;
+using BookNest.Utility;
 using BookNestWeb.DataAccess.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -11,6 +13,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 namespace BookNestWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         // If getting error then check Service/ create interface object

@@ -1,12 +1,13 @@
 ﻿using BookNest.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace BookNestWeb.DataAccess.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
-	{
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    {
 		// write ctor for create constructor
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
@@ -14,6 +15,8 @@ namespace BookNestWeb.DataAccess.Data
 		}
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Product> Products { get; set; }
+
+		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 		//This is called Seed
 
